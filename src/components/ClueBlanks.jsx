@@ -14,23 +14,24 @@ function ClueBlanks({ answer, guesses }) {
 		for(let i = 0;i < answer.length;i++){
 			for(let j = 0;j < answer[i].length;j++){
 				var ord = answer[i][j].charCodeAt(0) - 65;
-				if(guesses[ord] == 1){
+				//console.log(answer[i][j], ord, guesses[ord]);
+				if(guesses[ord] === 1){
 					res += answer[i][j];
 				}else{
 					res += "_";
 				}
 				res += " ";
 			}
-			res += "  ";
+			res += "   ";
 		}
-		console.log(res);
+		//console.log(res);
 		return res;
 	}; 
 
 
 	return (
 		<div>
-			<p>{clueString}</p>
+			<h2><pre>{clueString}</pre></h2>
 		</div>
 	)
 }

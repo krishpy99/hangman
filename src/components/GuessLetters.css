@@ -1,0 +1,13 @@
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.letter-button {
+}
+
+.button-container .letter-button:nth-child(13n) {
+  margin-right: 0; /* Remove right margin for every 13th button */
+  color: "black"
+}
