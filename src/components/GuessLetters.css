@@ -1,13 +1,16 @@
 .button-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Adjust the gap as needed */
+	padding: 10px;
 }
 
 .letter-button {
+	padding: 10px;
+	margin: 10px;
 }
 
-.button-container .letter-button:nth-child(13n) {
-  margin-right: 0; /* Remove right margin for every 13th button */
-  color: "black"
+.bg-green{
+	background-color: #AFE1AF
+}
+
+.bg-red{
+	background-color: #E97451
 }

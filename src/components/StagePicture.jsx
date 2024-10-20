@@ -1,15 +1,12 @@
 import { useState } from 'react'
 
-function ClueBlanks() {
+function StagePicture({ mistakes, setMistakes }) {
 
 	return (
-		<>
-			<h1>Hangman</h1>
-			<ClueBlanks guesses={guesses}/>
-			<GuessLetters />
-			<StagePicture stage={stage} />
-		</>
+		<div>
+			
+		</div>
 	)
 }
 
-export default App
+export default StagePicture;
