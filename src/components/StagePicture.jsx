@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function StagePicture({ mistakes }) {
+function StagePicture({ mistakes, result }) {
 	const srcDir = "./src/assets/stages/";
 	const [imgSource, setImgSource] = useState(srcDir + "1.png");
 
@@ -8,12 +8,14 @@ function StagePicture({ mistakes }) {
 		setImgSource(srcDir + mistakes + ".png");
 	}, [mistakes]);
 
-	return (
-		<div>
-			<h2> Mistakes made: {mistakes}</h2>
-			<img src={imgSource} />	
-		</div>
-	)
+	if(result === 0){
+		return (<div>
+					<h2> Mistakes made: {mistakes}</h2>
+					<img src={imgSource} />	
+				</div>
+			   )
+	}
+	return null
 }
 
 export default StagePicture;

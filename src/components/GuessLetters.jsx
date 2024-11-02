@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './GuessLetters.css'; // Import the CSS file
 
-function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes}) {
+function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes, result, setResult}) {
 
 	const [buttons, setButtons] = useState([]);
 	const [firstLoad, setFirstLoad] = useState(true);
@@ -21,6 +21,9 @@ function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes}) {
 	const handleClick = (key) => {
 		var new_guesses = [...guesses];
 		if(new_guesses[key] == 0 && present[key] == 0 && mistakes < 7){
+			if(mistakes == 6){
+				setResult(-1);
+			}
 			setMistakes(mistakes + 1);
 		}
 		new_guesses[key] = 1;
@@ -28,6 +31,10 @@ function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes}) {
 	};
 
 	const reRenderButtons = () => {
+		if(result !== 0){
+			setButtons([]);
+			return;
+		}
 		const buttonsTemp = [];
 		for (let i = 0; i < 26; i++) {
 			let classnames = "letter-button";
@@ -45,7 +52,7 @@ function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes}) {
 
 	useEffect(() => {
 		reRenderButtons();
-	}, [guesses, present]);
+	}, [guesses, present, result]);
 
 	return (
 		<div className="button-container">
