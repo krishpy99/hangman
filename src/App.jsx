@@ -22,6 +22,7 @@ function App() {
 			<GuessLetters guesses={guesses} setGuesses={setGuesses} answer={answer} mistakes={mistakes} setMistakes={setMistakes} result={result} setResult={setResult}/>
 			<StagePicture mistakes={mistakes} result={result}/>
 			<GameResult result={result}/>
+			<button onClick={setNewAnswer}>Get New Word</button>
 		</>
 	)
 }
