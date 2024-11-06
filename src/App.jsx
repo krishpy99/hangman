@@ -3,6 +3,8 @@ import ClueBlanks from './components/ClueBlanks'
 import GuessLetters from './components/GuessLetters'
 import StagePicture from './components/StagePicture'
 import GameResult from './components/GameResult'
+import generic from './assets/clues/generic'
+import movies from './assets/clues/movies'
 import './App.css'
 
 function App() {
