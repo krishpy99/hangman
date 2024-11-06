@@ -16,7 +16,7 @@ function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes, resul
 			}
 		}
 		setPresent(isItThere);
-	}, []);
+	}, [answer]);
 
 	const handleClick = (key) => {
 		var new_guesses = [...guesses];
@@ -30,11 +30,7 @@ function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes, resul
 		setGuesses(new_guesses);
 	};
 
-	const reRenderButtons = () => {
-		if(result !== 0){
-			setButtons([]);
-			return;
-		}
+	useEffect(() => {
 		const buttonsTemp = [];
 		for (let i = 0; i < 26; i++) {
 			let classnames = "letter-button";
@@ -48,11 +44,7 @@ function GuessLetters({guesses, setGuesses, answer, mistakes, setMistakes, resul
 			);
 		}
 		setButtons(buttonsTemp);
-	};
-
-	useEffect(() => {
-		reRenderButtons();
-	}, [guesses, present, result]);
+	}, [guesses, present]);
 
 	return (
 		<div className="button-container">

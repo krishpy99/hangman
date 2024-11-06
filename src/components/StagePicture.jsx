@@ -8,13 +8,11 @@ function StagePicture({ mistakes, result }) {
 		setImgSource(srcDir + mistakes + ".png");
 	}, [mistakes]);
 
-	if(result === 0){
-		return (<div>
-					<h2> Mistakes made: {mistakes}</h2>
-					<img src={imgSource} />	
-				</div>
-			   )
-	}
+	return (<div>
+		<h2> Mistakes made: {mistakes}</h2>
+		<img src={imgSource} />	
+	</div>
+	)
 	return null
 }
 

@@ -8,25 +8,44 @@ import movies from './assets/clues/movies'
 import './App.css'
 
 function App() {
-	const [answer, setAnswer] = useState(["ANSWER", "THIS", "QUESTION"]);
+	const [answer, setAnswer] = useState(["THIS"]);
 	const [guesses, setGuesses] = useState(Array.from({length: 26}, (_, i) => 0));
 	const [stage, setStage] = useState(0);
 	const [mistakes, setMistakes] = useState(0);
 	const [result, setResult] = useState(0);
 
-	const setNewAnswer = () => {
-		
+	const chooseNewWord = (arr) => {
+		var ind = Math.floor(Math.random() * arr.length);
+		var new_word = arr[ind].toUpperCase();
+		setAnswer(new_word.split());
+		setResult(0);
+		setGuesses(Array.from({length: 26}, (_, i) => 0));
+		setMistakes(0);
 	};
 
 	return (
-		<>
-			<ClueBlanks guesses={guesses} answer={answer} setResult={setResult} />
-			<GuessLetters guesses={guesses} setGuesses={setGuesses} answer={answer} mistakes={mistakes} setMistakes={setMistakes} result={result} setResult={setResult}/>
-			<StagePicture mistakes={mistakes} result={result}/>
+		<div className={`game-container ${result !== 0 ? 'centered' : 'side-by-side'}`}>
+			<div className="left-section">
+				<ClueBlanks guesses={guesses} answer={answer} setResult={setResult} />
+				{result === 0 && (
+					<GuessLetters guesses={guesses} setGuesses={setGuesses} answer={answer} mistakes={mistakes} setMistakes={setMistakes} setResult={setResult} />
+				)}
+			</div>
+			{result === 0 && (
+				<div className="right-section">
+					<StagePicture mistakes={mistakes} />
+				</div>
+			)}
 			<GameResult result={result}/>
-			<button onClick={setNewAnswer}>Get New Word</button>
-		</>
+			{(result !== 0) && (
+				<div className="button-group">
+					<button onClick={() => chooseNewWord(generic)}>Get New Word</button>
+					<button onClick={() => chooseNewWord(movies)}>Get A New Movie</button>
+				</div>
+			)}
+		</div>
 	)
 }
 
-export default App
+export default App;
+
