@@ -1,26 +1,29 @@
 import { useState } from 'react'
+
 import ClueBlanks from './components/ClueBlanks'
 import GuessLetters from './components/GuessLetters'
 import StagePicture from './components/StagePicture'
 import GameResult from './components/GameResult'
+import ShowAnswer from './components/ShowAnswer'
+
 import generic from './assets/generic'
 import movies from './assets/movies'
+import { ord, isAlpha, chooseNewWord, setPresence } from './assets/helper'
+
 import './App.css'
 
 function App() {
-	const [answer, setAnswer] = useState(["THIS"]);
+	const [answer, setAnswer] = useState("SAMPLE CLUE");
+	const [present, setPresent] = useState(Array.from({length: 26}, (_, i) => 0));
 	const [guesses, setGuesses] = useState(Array.from({length: 26}, (_, i) => 0));
-	const [stage, setStage] = useState(0);
 	const [mistakes, setMistakes] = useState(0);
 	const [result, setResult] = useState(0);
 
-	const chooseNewWord = (arr) => {
-		var ind = Math.floor(Math.random() * arr.length);
-		var new_word = arr[ind].toUpperCase();
-		setAnswer(new_word.split());
-		setResult(0);
+	const resetGame = (arr) => {
+		var word = chooseNewWord(arr);
+		setAnswer(word); setPresent(setPresence(word));
+		setResult(0); setMistakes(0);
 		setGuesses(Array.from({length: 26}, (_, i) => 0));
-		setMistakes(0);
 	};
 
 	return (
@@ -38,9 +41,12 @@ function App() {
 			)}
 			<GameResult result={result}/>
 			{(result !== 0) && (
+				<div>
+				<ShowAnswer answer={answer} guesses={guesses} />
 				<div className="button-group">
-					<button onClick={() => chooseNewWord(generic)}>Get New Word</button>
-					<button onClick={() => chooseNewWord(movies)}>Get A New Movie</button>
+					<button onClick={() => resetGame(generic)}>Get New Word</button>
+					<button onClick={() => resetGame(movies)}>Get A New Movie</button>
+				</div>
 				</div>
 			)}
 		</div>
