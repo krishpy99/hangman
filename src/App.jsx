@@ -13,7 +13,7 @@ import { ord, isAlpha, chooseNewWord, setPresence } from './assets/helper'
 import './App.css'
 
 function App() {
-	const [answer, setAnswer] = useState("SAMPLE CLUE");
+	const [answer, setAnswer] = useState("CLUE");
 	const [present, setPresent] = useState(Array.from({length: 26}, (_, i) => 0));
 	const [guesses, setGuesses] = useState(Array.from({length: 26}, (_, i) => 0));
 	const [mistakes, setMistakes] = useState(0);
