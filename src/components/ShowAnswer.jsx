@@ -10,10 +10,12 @@ function ShowAnswer({answer, guesses}){
 
 	useEffect(() =>{
 		var display_answer = []
+		console.log(answer)
 		for(var i = 0; i < answer.length; i++){
 			var class_name = "green";
 			if(isAlpha(answer[i]) && guesses[ord(answer[i])] == 0) class_name = "red";
-			display_answer.push(<h2 key={i} className={class_name}>{answer[i]}</h2>)
+			class_name += " ans";
+			display_answer.push(<pre className={class_name} key={i} >{answer[i]}</pre>)
 		}
 		setDisplay(display_answer);
 	}, [answer, guesses]);	
